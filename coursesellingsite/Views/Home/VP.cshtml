@@ -1,0 +1,200 @@
+﻿@model AddCoursePreviewDetail
+@{
+    bool hasAccess = ViewBag.HasAccess;
+}
+
+
+   @{
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";  // Specifying the layout page
+
+    // Assuming 'Model' is a single selected course object
+    var selectedCourse = Model;
+
+    // If either CoursePrice or SellingPrice is a decimal, convert them to double before doing calculations
+    var discountPercentage = selectedCourse != null && selectedCourse.CoursePrice > 0
+        ? Math.Round(((double)selectedCourse.CoursePrice - (double)selectedCourse.SellingPrice) / (double)selectedCourse.CoursePrice * 100)
+        : 0;
+}
+
+
+    // Get the access status (whether the course is unlocked or not)
+    bool hasAccess = ViewData["HasAccess"] != null && (bool)ViewData["HasAccess"];
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        /* Add your existing styles here */
+        .locked-content {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+            .locked-content a {
+                color: #0d6efd;
+                text-decoration: none;
+            }
+    </style>
+</head>
+<body>
+    <div class="container-fluid px-lg-4 px-3 mt-4">
+        <div class="row g-4">
+            <!-- Left Column: Course Details -->
+            <div class="col-lg-8">
+                @if (selectedCourse != null)
+                {
+                    <div class="card shadow-lg border-0 rounded-4">
+                        <div class="card-body p-4">
+                            <!-- Video Preview -->
+                            <div class="ratio ratio-16x9 mb-4 rounded-3 overflow-hidden shadow-sm position-relative">
+                                <video controls class="object-fit-cover w-100 h-100" id="cvideo">
+                                    <source id="csource" src="@Url.Content("~" + selectedCourse.PreviewDemoVideoPath)" type="video/mp4" />
+                                    Your browser does not support the video tag.
+                                </video>
+                                <span class="position-absolute top-0 end-0 m-3 badge bg-danger fs-6">
+                                    @discountPercentage% OFF
+                                </span>
+                            </div>
+
+                            <!-- Course Title and Description -->
+                            <h1 class="fw-bold display-6 mb-3" id="ctitle">@selectedCourse.CourseTitle</h1>
+
+                            <div class="d-flex align-items-center gap-3 mb-4">
+                                <div class="rating-stars text-warning">
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-half"></i>
+                                    <i class="bi bi-star"></i>
+                                </div>
+                                <span class="text-muted">(2,238 reviews)</span>
+                            </div>
+
+                            <p class="lead text-muted mb-4" id="cdesc">@selectedCourse.CourseDescription</p>
+                            <hr class="my-4" />
+
+                            <!-- Course Information -->
+                            <div class="mb-5">
+                                <h3 class="text-primary mb-4">Course Information</h3>
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <dl class="row">
+                                            <dt class="col-sm-5">Category:</dt>
+                                            <dd class="col-sm-7">@selectedCourse.RelatedCategory</dd>
+                                            <dt class="col-sm-5">Level:</dt>
+                                            <dd class="col-sm-7"><span class="badge bg-info">@selectedCourse.CourseLevel</span></dd>
+                                            <dt class="col-sm-5">Language:</dt>
+                                            <dd class="col-sm-7">@selectedCourse.UsedLanguage</dd>
+                                        </dl>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <dl class="row">
+                                            <dt class="col-sm-5">Original Price:</dt>
+                                            <dd class="col-sm-7 text-decoration-line-through">₹@selectedCourse.CoursePrice</dd>
+                                            <dt class="col-sm-5">Discounted Price:</dt>
+                                            <dd class="col-sm-7 text-success fw-bold fs-5">₹@selectedCourse.SellingPrice</dd>
+                                            <dt class="col-sm-5">Instructor:</dt>
+                                            <dd class="col-sm-7 d-flex align-items-center gap-2">
+                                                <img src="@(selectedCourse.Pic ?? "~/uploads/images/instructor-placeholder.jpg")" class="rounded-circle" width="30" height="30" />
+                                                @selectedCourse.CreatedBy
+                                            </dd>
+                                        </dl>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- <!-- Action Buttons -->
+                            <div class="d-flex flex-wrap gap-3 mb-5">
+                                @if (ViewBag.HasAccess == null || !ViewBag.HasAccess)
+                                {
+                                    <div class="locked-content">
+                                        <p>This course is locked. Please <a href="@Url.Action("BuyNow", "Order", new { Id = selectedCourse.Id })">purchase</a> to access the full content.</p>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <a href="@Url.Action("VP", "Home", new { id = selectedCourse.Id })" class="btn btn-primary px-4 py-2">
+                                        <i class="bi bi-cart-check me-2"></i>Buy Now
+                                    </a>
+                                    <a href="@Url.Action("AddToCart", "Cart", new { id = selectedCourse.Id })" class="btn btn-outline-primary px-4 py-2">
+                                        <i class="bi bi-cart-plus me-2"></i>Add to Cart
+                                    </a>
+                                }
+                            </div>
+
+                            <!-- Pre-requirements -->
+                            <div class="bg-light p-4 rounded-3 shadow-sm">
+                                <h4 class="text-secondary mb-3">
+                                    <i class="bi bi-list-check me-2"></i>Pre-requirements
+                                </h4>
+                                <p class="mb-0">@selectedCourse.PreRequirement</p>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <!-- Right Column: Course Content -->
+            <div class="col-lg-4">
+                <div class="card border-0 shadow-sm h-100 rounded-4 position-sticky bg-light top-4">
+                    <div class="card-header bg-primary text-white rounded-top-4 py-3">
+                        <h5 class="mb-0"><i class="bi bi-list-task me-2"></i>Course Content</h5>
+                    </div>
+                    <div class="card-body p-0">
+                        @if (hasAccess)
+                        {
+                            <div class="accordion accordion-flush" id="courseContent">
+                                @{
+                                    int index = 0;
+                                }
+                                @foreach (var item in ViewBag.Detail)
+                                {
+                                    var headingId = $"heading{index}";
+                                    var collapseId = $"collapse{index}";
+                                    index++;
+
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="@headingId">
+                                            <button onclick="playvideo('@Url.Content("~" + item.Video)','@item.CourseDescription','@item.CourseTitle')" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#@collapseId" aria-expanded="false" aria-controls="@collapseId">
+                                                <i class="bi bi-journal-text me-2 text-primary" value="@item.Id"></i> @item.CourseTitle
+                                            </button>
+                                        </h2>
+                                        <div id="@collapseId" class="accordion-collapse collapse" aria-labelledby="@headingId" data-bs-parent="#courseContent">
+                                            <div class="accordion-body p-3" value="@item.Id">
+                                                @item.CourseDescription
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="locked-content">
+                                <p>The content is locked. Please <a href="@Url.Action("BuyNow", "Order", new { Id = selectedCourse.Id })">purchase</a> to access the content.</p>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function playvideo(x, y, z) {
+            const videoSource = document.getElementById('csource');
+            const videoPlayer = document.getElementById('cvideo');
+            videoSource.src = x;
+            videoPlayer.load();
+            videoPlayer.play();
+
+            document.getElementById('ctitle').innerText = y;
+            document.getElementById('cdesc').innerText = z;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+﻿@model AddCoursePreviewDetail
+
+@{
+    ViewData["Title"] = "Course Details";
+}
+
+<h2>@Model.CourseTitle</h2>
+
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-warning">
+        @TempData["Message"]
+    </div>
+}
+
+<p>@Model.CourseDescription</p>
+
+@if (User.Identity.IsAuthenticated && ViewData["HasAccess"] != null && !(bool)ViewData["HasAccess"])
+{
+    <div class="alert alert-info">
+        This course is locked. You need to purchase it to access the content.
+    </div>
+}
+
+@if (User.Identity.IsAuthenticated && ViewData["HasAccess"] != null && (bool)ViewData["HasAccess"])
+{
+    <div>
+        <!-- Show course content if the user has purchased -->
+        <h3>Course Content</h3>
+        <p>Course content goes here...</p>
+    </div>
+}
+
+<!-- Button to buy the course if not purchased -->
+@if (ViewData["HasAccess"] == null || !(bool)ViewData["HasAccess"])
+{
+    <a href="@Url.Action("BuyNow", "Order", new { courseId = Model.Id })" class="btn btn-primary">Buy Now</a>
+}

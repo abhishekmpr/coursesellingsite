@@ -1,0 +1,166 @@
+﻿@{
+    Layout = null; // No master layout for the _AdminLayout itself
+}
+<!DOCTYPE html>
+ <!-- HTML5 document declaration -->
+<html lang="en">
+ <!-- Document language set to English -->
+<head>
+    <meta charset="UTF-8"> <!-- Character encoding -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Responsive settings -->
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"> <!-- IE compatibility mode -->
+    <title>Elomoas - Online Course and LMS HTML Template</title> <!-- Page title -->
+    <!-- Link to the Themify icons stylesheet -->
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/themify-icons.css")">
+    <!-- Link to the Feather icons stylesheet -->
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/feather.css")">
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="@Url.Content("~/Content/images/favicon.png")">
+    <!-- Main stylesheet -->
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/style.css")">
+</head>
+
+<body class="color-theme-blue mont-font">
+    <!-- Body with color theme and custom font -->
+
+    <div class="preloader"></div> <!-- Preloader container -->
+
+    <div class="main-wrapper">
+        <!-- Wrapper for the entire layout content -->
+        <!-- Sidebar Navigation -->
+        <nav class="navigation scroll-bar">
+            <div class="container pl-0 pr-0">
+                <!-- Container with no left/right padding -->
+                <div class="nav-content">
+                    <!-- Navigation content holder -->
+                    <div class="nav-top">
+                        <!-- Top part of the navigation -->
+                        <a href="#">
+                            <i class="feather-slack text-success display1-size mr-3 ml-3"></i>
+                            <span class="d-inline-block fredoka-font ls-3 fw-600 text-current font-xl logo-text mb-0">Elomoas.</span>
+                        </a>
+                        <!-- Close button shown on small screens -->
+                        <a href="#" class="close-nav d-inline-block d-lg-none">
+                            <i class="ti-close bg-grey mb-4 btn-round-sm font-xssss fw-700 text-dark ml-auto mr-2"></i>
+                        </a>
+                    </div>
+                    <!-- Caption above the menu items -->
+                    <div class="nav-caption fw-600 font-xssss text-grey-500"><span>New </span>Feeds</div>
+                    <ul class="mb-3">
+                        <li class="logo d-none d-xl-block d-lg-block"></li>
+                        <!-- Navigation menu items -->
+                        <li><a href="/admin/dashboard/" class="active nav-content-bttn open-font" data-tab="chats"><i class="feather-tv mr-3"></i><span>DASHBOARD</span></a></li>
+                        <li><a href="/admin/AddCourseCategory" class="nav-content-bttn open-font" data-tab="friends"><i class="feather-shopping-bag mr-3"></i><span>Add Course Category</span></a></li>
+                        <li><a href="/admin/AddCourseTitle" class="nav-content-bttn open-font" data-tab="favorites"><i class="feather-globe mr-3"></i><span>Add Course Title</span></a></li>
+                        <li><a href="/admin/AddCoursePreviewDetail" class="nav-content-bttn open-font" data-tab="favorites"><i class="feather-play-circle mr-3"></i><span>Add Course Preview Detail</span></a></li>
+                        <li class="flex-lg-brackets"><a href="/admin/AddCourseContent" data-tab="archived" class="nav-content-bttn open-font"><i class="feather-video mr-3"></i><span>Add Course Content</span></a></li>
+                    </ul>
+                    <!-- "Manage" section header -->
+                    <div class="nav-caption fw-600 font-xssss text-grey-500"><span></span> Manage</div>
+                    <ul class="mb-3">
+                        <li class="logo d-none d-xl-block d-lg-block"></li>
+                        <!-- Manage section items -->
+                        <li><a href="#" class="nav-content-bttn open-font h-auto pt-2 pb-2"><i class="font-sm feather-settings mr-3 text-grey-500"></i><span>Manage Users</span></a></li>
+                        <li><a href="#" class="nav-content-bttn open-font h-auto pt-2 pb-2"><i class="font-sm feather-pie-chart mr-3 text-grey-500"></i><span>Manage Enquiries</span></a></li>
+                        <li><a href="#" class="nav-content-bttn open-font h-auto pt-2 pb-2"><i class="font-sm feather-message-square mr-3 text-grey-500"></i><span>Manage Feedback</span><span class="circle-count bg-warning mt-0">23</span></a></li>
+                        <li><a href="/admin/logout" class="nav-content-bttn open-font h-auto pt-2 pb-2"><i class="font-sm feather-log-out mr-3 text-grey-500"></i><span>Logout</span></a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- End Sidebar Navigation -->
+        <!-- Main content area -->
+        <div class="main-content">
+            <div class="middle-sidebar-header bg-white">
+                <button class="header-menu"></button> <!-- Button for mobile menu toggle -->
+                <!-- Header search form -->
+                <form class="float-left header-search">
+                    <div class="form-group mb-0 icon-input">
+                        <i class="feather-search font-lg text-grey-400"></i>
+                        <input type="text" placeholder="Start typing to search.." class="bg-transparent border-0 lh-32 pt-2 pb-2 pl-5 pr-3 font-xsss fw-500 rounded-xl w350">
+                    </div>
+                </form>
+                <!-- Right-side header icons -->
+                <ul class="d-flex ml-auto right-menu-icon">
+                    <li>
+                        <a href="/admin/logout"><i class="feather-log-out font-xl text-current"></i></a> <!-- Logout icon -->
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="feather-settings animation-spin d-inline-block font-xl text-current"></i>
+                            <!-- Settings dropdown container -->
+                            <div class="menu-dropdown switchcolor-wrap">
+                                <h4 class="fw-700 font-xs mb-4">Settings</h4>
+                                <h6 class="font-xssss text-grey-500 fw-700 mb-3 d-block">Choose Color Theme</h6>
+                                <ul>
+                                    <!-- List of color theme selection options -->
+                                    <li class="ml-0">
+                                        <label class="item-radio item-content">
+                                            <input type="radio" name="color-radio" value="red" checked=""><i class="ti-check"></i>
+                                            <span class="circle-color bg-red" style="background-color: #ff3b30;"></span>
+                                        </label>
+                                    </li>
+                                    <!-- Additional color options go here... -->
+                                </ul>
+                                <!-- Toggle options for header background, sticky header, etc. -->
+                                <div class="card bg-transparent-card border-0 d-block mt-3">
+                                    <h4 class="d-inline font-xssss mont-font fw-700">Header Background</h4>
+                                    <div class="d-inline float-right mt-1">
+                                        <label class="toggle toggle-menu-color">
+                                            <input type="checkbox"><span class="toggle-icon"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <!-- Other toggle settings omitted for brevity -->
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img src="@Url.Content("~/Content/images/female-profile.png")" alt="user" class="w40 mt--1"> <!-- User profile image -->
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="menu-search-icon"><i class="feather-search text-grey-900 font-lg"></i></a> <!-- Search icon -->
+                    </li>
+                </ul>
+            </div>
+
+            @RenderBody() <!-- Renders the main page content defined in the view that uses this layout -->
+        </div>
+        <!-- End Main content area -->
+        <!-- Footer Navigation (bottom navigation bar) -->
+        <div class="app-footer border-0 shadow-lg">
+            <a href="#" class="nav-content-bttn nav-center"><i class="feather-home"></i></a>
+            <a href="#" class="nav-content-bttn"><i class="feather-package"></i></a>
+            <a href="#" class="nav-content-bttn" data-tab="chats"><i class="feather-layout"></i></a>
+            <a href="#" class="nav-content-bttn sidebar-layer"><i class="feather-layers"></i></a>
+            <a href="#" class="nav-content-bttn">
+                <img src="@Url.Content("~/Content/images/female-profile.png")" alt="user" class="w30 shadow-xss">
+            </a>
+        </div>
+
+        <!-- Full screen search overlay -->
+        <div class="app-header-search">
+            <form class="search-form">
+                <div class="form-group searchbox mb-0 border-0 p-1">
+                    <input type="text" class="form-control border-0" placeholder="Search...">
+                    <i class="input-icon">
+                        <ion-icon name="search-outline"></ion-icon>
+                    </i>
+                    <a href="#" class="ml-1 mt-1 d-inline-block close searchbox-close">
+                        <i class="ti-close font-xs"></i>
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div> <!-- End of main-wrapper -->
+    <!-- Scripts -->
+    <script src="@Url.Content("~/Content/js/plugin.js")"></script> <!-- Plugin scripts -->
+    <script src="@Url.Content("~/Content/js/apexcharts.min.js")"></script> <!-- ApexCharts library -->
+    <script src="@Url.Content("~/Content/js/chart.js")"></script> <!-- Chart.js library -->
+    <script src="@Url.Content("~/Content/js/scripts.js")"></script> <!-- Custom JavaScript -->
+    @RenderSection("Scripts", required: false) <!-- Render the Scripts section defined in child views (not required) -->
+
+</body>
+</html>

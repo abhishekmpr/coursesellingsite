@@ -1,0 +1,119 @@
+﻿@model coursesellingsite.Models.Register
+
+
+@{
+
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+@{
+    ViewData["Title"] = "User Registration";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow-lg border-0 rounded-4">
+                <div class="card-header bg-primary text-white text-center rounded-top-4">
+                    <h2 class="mb-0">User Registration</h2>
+                </div>
+                <div class="card-body p-4">
+                    <form asp-action="Create" method="post" novalidate>
+                        <div class="row g-3">
+
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input asp-for="FirstName" class="form-control" placeholder="First Name" />
+                                    <label asp-for="FirstName"></label>
+                                    <span class="text-danger" asp-validation-for="FirstName"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input asp-for="LastName" class="form-control" placeholder="Last Name" />
+                                    <label asp-for="LastName"></label>
+                                    <span class="text-danger" asp-validation-for="LastName"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input asp-for="Email" class="form-control" placeholder="Email" />
+                                    <label asp-for="Email"></label>
+                                    <span class="text-danger" asp-validation-for="Email"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input asp-for="Phone" class="form-control" placeholder="Phone" />
+                                    <label asp-for="Phone"></label>
+                                    <span class="text-danger" asp-validation-for="Phone"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input asp-for="Country" class="form-control" placeholder="Country" />
+                                    <label asp-for="Country"></label>
+                                    <span class="text-danger" asp-validation-for="Country"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input asp-for="City" class="form-control" placeholder="City" />
+                                    <label asp-for="City"></label>
+                                    <span class="text-danger" asp-validation-for="City"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input asp-for="Address" class="form-control" placeholder="Address" />
+                                    <label asp-for="Address"></label>
+                                    <span class="text-danger" asp-validation-for="Address"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input asp-for="Postcode" class="form-control" placeholder="Postcode" />
+                                    <label asp-for="Postcode"></label>
+                                    <span class="text-danger" asp-validation-for="Postcode"></span>
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input asp-for="Password" class="form-control" placeholder="Password" />
+                                    <label asp-for="Password"></label>
+                                    <span class="text-danger" asp-validation-for="Password"></span>
+                                </div>
+                            </div>
+
+
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    <textarea asp-for="Description" class="form-control" placeholder="Write something here..." style="height: 120px"></textarea>
+                                    <label asp-for="Description"></label>
+                                    <span class="text-danger" asp-validation-for="Description"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-12 text-center">
+                                <button type="submit" class="btn btn-success btn-lg mt-3 px-5">Register</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

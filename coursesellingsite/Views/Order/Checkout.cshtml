@@ -1,0 +1,15 @@
+﻿@{
+
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+@model BuyNowViewModel
+
+<h2>Buy Now - Checkout</h2>
+<p><strong>Course:</strong> @Model.CourseTitle</p>
+<p><strong>Price:</strong> ₹@Model.Price</p>
+
+<!-- You can integrate Stripe or PayPal button here -->
+<form method="post" action="/Order/ConfirmPayment">
+    <input type="hidden" name="CourseId" value="@Model.OrderId" />
+    <input type="submit" value="Pay Now" class="btn btn-primary" />
+</form>

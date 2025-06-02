@@ -1,0 +1,28 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+<h3>Your Purchased Courses</h3>
+
+@if (ViewBag.PurchasedCourses != null && ViewBag.PurchasedCourses.Count > 0)
+{
+    <div class="row">
+        @foreach (var course in ViewBag.PurchasedCourses)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="@course.Pic" class="card-img-top" alt="@course.CourseName" />
+                    <div class="card-body">
+                        <h5 class="card-title">@course.CourseName</h5>
+                        <p class="card-text">@course.CourseDescription</p>
+                        <a href="@Url.Action("Viewcourse", "Home", new { Id = course.Id })" class="btn btn-primary">View Course</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <p>You have not purchased any courses yet. Browse our course catalog to get started!</p>
+}

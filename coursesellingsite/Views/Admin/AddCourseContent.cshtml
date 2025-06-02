@@ -1,0 +1,46 @@
+﻿@model AddCourseContent
+@{
+    ViewBag.Title = "Add Course Content";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Add Course Content</h2>
+
+<form asp-action="AddCourseContent" asp-controller="Admin" method="post" enctype="multipart/form-data">
+   
+
+    <div class="mb-3">
+        <label asp-for="CourseTitle" class="form-label">Course Title:</label>
+        <input asp-for="CourseTitle" class="form-control" id="mainCourseTitle" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Select Course</label>
+        <select name="PreviewDetailId">
+    @foreach (var item in ViewBag.PreviewContent)
+    {   
+           <option value="@item.Id">@item.Id</option>   
+    }
+        </select>
+    </div>
+
+
+
+    <div class="mb-3">
+        <label asp-for="CourseDescription" class="form-label">Description:</label>
+        <textarea asp-for="CourseDescription" class="form-control" id="mainCourseDescription"></textarea>
+    </div>
+
+  
+
+    <div class="mb-3">
+        <label class="form-label">Upload Video:</label>
+        <input name="videoFile" type="file" class="form-control" i />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Upload Image:</label>
+        <input name="imageFile" type="file" class="form-control" />
+    </div>
+
+    <input type="submit" class="btn btn-outline-success form-control" value="Save Now" />
+</form>

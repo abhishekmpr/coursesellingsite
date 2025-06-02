@@ -1,0 +1,54 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+@model Login
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
+                <div class="row g-0">
+                    <!-- Left Side Image -->
+                    <div class="col-md-6 d-none d-md-block">
+                        <img src="/ContentFiles/3d-render-secure-login-password-illustration.jpg"
+                             alt="Login Visual"
+                             class="img-fluid h-100 w-100 object-fit-cover"
+                             style="object-fit: cover;" />
+                    </div>
+
+                    <!-- Right Side Form -->
+                    <div class="col-md-6 p-5 bg-light">
+                        <h3 class="text-center mb-4 fw-bold text-primary">User Login</h3>
+
+                        <form asp-action="Login" method="post" novalidate>
+                            <div class="form-floating mb-3">
+                                <input asp-for="Email" class="form-control" placeholder="Email" />
+                                <label asp-for="Email"></label>
+                                <span asp-validation-for="Email" class="text-danger small"></span>
+                            </div>
+
+                            <div class="form-floating mb-3">
+                                <input asp-for="Password" type="password" class="form-control" placeholder="Password" />
+                                <label asp-for="Password"></label>
+                                <span asp-validation-for="Password" class="text-danger small"></span>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary w-100 py-2">Login</button>
+                        </form>
+
+                        <div class="text-center mt-4">
+                            <a asp-controller="Register" asp-action="Create" class="text-decoration-none">
+                                Don't have an account? <span class="fw-semibold text-primary">Register here</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

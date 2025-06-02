@@ -1,0 +1,37 @@
+﻿@{
+
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+@model IEnumerable<BuyNowViewModel>
+
+<h2>My Orders</h2>
+
+@if (Model.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Course Title</th>
+                <th>Course Price</th>
+                <th>Order Price</th>
+                <th>Order Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var order in Model)
+            {
+                <tr>
+                    <td>@order.CourseTitle</td>
+                    <td>@order.CoursePrice</td>
+                    <td>@order.Price</td>
+                    <td>@order.OrderDate.ToString("yyyy-MM-dd")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No courses purchased yet.</p>
+}
